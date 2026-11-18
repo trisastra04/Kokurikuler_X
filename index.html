@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Proyek Kokurikuler: Pop-Up Book Sejarah Praaksara</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        terracotta: {
+                            50: '#fdf6f3',
+                            100: '#fbeae3',
+                            200: '#f6d2c3',
+                            500: '#d96b43',
+                            600: '#c2542e',
+                            700: '#a14122',
+                            800: '#853820',
+                            900: '#6e311e',
+                        },
+                        sand: {
+                            50: '#faf8f5',
+                            100: '#f3efe8',
+                            200: '#e5ddd0',
+                            800: '#4a4238',
+                            900: '#2d2822',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            body { background-color: white !important; }
+            .shadow-sm, .shadow-md, .shadow-lg { box-shadow: none !important; border: 1px solid #e5e7eb !important; }
+        }
+    </style>
+</head>
+<body class="bg-sand-50 text-sand-900 font-sans antialiased selection:bg-terracotta-200 selection:text-terracotta-900">
+
+    <!-- Navbar Sticky -->
+    <nav class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-sand-200 no-print">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-terracotta-600 text-white flex items-center justify-center shadow-sm">
+                    <i class="fa-solid fa-book-open text-sm"></i>
+                </div>
+                <div>
+                    <span class="font-display font-bold text-sm sm:text-base text-sand-900 block leading-none">Sejarah Kelas X</span>
+                    <span class="text-xs text-stone-500">Proyek Kokurikuler</span>
+                </div>
+            </div>
+            
+            <!-- Menu Navigasi Desktop -->
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium text-stone-600">
+                <a href="#ketentuan" class="hover:text-terracotta-600 transition-colors">Ketentuan</a>
+                <a href="#komponen" class="hover:text-terracotta-600 transition-colors">Struktur Isi</a>
+                <a href="#panduan-zaman" class="hover:text-terracotta-600 transition-colors">Materi Per Zaman</a>
+                <a href="#penilaian" class="hover:text-terracotta-600 transition-colors">Penilaian</a>
+            </div>
+
+            <!-- Tombol Aksi Cepat -->
+            <div class="flex items-center gap-2">
+                <button onclick="copyShareText()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-sand-100 hover:bg-sand-200 text-sand-900 text-xs sm:text-sm font-medium transition-colors">
+                    <i class="fa-regular fa-copy"></i>
+                    <span class="hidden sm:inline">Salin Info</span>
+                </button>
+                <button onclick="window.print()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-terracotta-600 hover:bg-terracotta-700 text-white text-xs sm:text-sm font-medium shadow-sm transition-colors">
+                    <i class="fa-solid fa-print"></i>
+                    <span class="hidden sm:inline">Cetak / PDF</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Toast Notification untuk Copy -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-sand-900 text-white px-4 py-3 rounded-xl shadow-lg flex items-center gap-3 text-sm no-print">
+        <i class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toast-msg">Ringkasan tugas berhasil disalin ke clipboard!</span>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative overflow-hidden bg-gradient-to-br from-sand-900 via-stone-800 to-terracotta-900 text-white py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-terracotta-200 text-xs font-semibold tracking-wide uppercase mb-4">
+                <i class="fa-solid fa-compass"></i> Tugas Proyek Kokurikuler • Fase E (Kelas X)
+            </div>
+            <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-4">
+                Pembuatan <span class="text-terracotta-500 bg-white/10 px-2.5 py-0.5 rounded-xl">Pop-Up Book</span><br>
+                Hasil Budaya Masa Praaksara Indonesia
+            </h1>
+            <p class="text-stone-300 text-base sm:text-lg max-w-2xl leading-relaxed mb-8">
+                Menjelajahi jejak peradaban awal Nusantara melalui karya visual tiga dimensi yang kreatif, kronologis, dan informatif.
+            </p>
+            
+            <!-- Ringkasan Cepat Cards -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                <div class="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-3.5 sm:p-4">
+                    <div class="text-terracotta-200 text-xs font-medium mb-1"><i class="fa-solid fa-users mr-1"></i> Kelompok</div>
+                    <div class="font-display font-bold text-base sm:text-lg">3 – 4 Siswa</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-3.5 sm:p-4">
+                    <div class="text-terracotta-200 text-xs font-medium mb-1"><i class="fa-solid fa-ruler-combined mr-1"></i> Ukuran Buku</div>
+                    <div class="font-display font-bold text-base sm:text-lg">Min. A4 (Tertutup)</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-3.5 sm:p-4">
+                    <div class="text-terracotta-200 text-xs font-medium mb-1"><i class="fa-solid fa-layer-group mr-1"></i> Cakupan</div>
+                    <div class="font-display font-bold text-base sm:text-lg">5 Zaman Utama</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-3.5 sm:p-4">
+                    <div class="text-terracotta-200 text-xs font-medium mb-1"><i class="fa-regular fa-clock mr-1"></i> Durasi</div>
+                    <div class="font-display font-bold text-base sm:text-lg">2 – 3 Minggu</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+
+        <!-- Section 1: Tujuan & Ketentuan Teknis -->
+        <section id="ketentuan" class="scroll-mt-24 space-y-6">
+            <div class="border-l-4 border-terracotta-600 pl-4">
+                <h2 class="font-display text-2xl font-bold text-sand-900">1. Tujuan & Ketentuan Umum Tugas</h2>
+                <p class="text-stone-600 text-sm mt-1">Pahami aturan teknis pengerjaan sebelum mulai merancang desain buku.</p>
+            </div>
+
+            <!-- Tujuan Box -->
+            <div class="bg-terracotta-50 border border-terracotta-200 rounded-2xl p-5 flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-terracotta-600 text-white flex items-center justify-center shrink-0 mt-0.5">
+                    <i class="fa-solid fa-bullseye"></i>
+                </div>
+                <div>
+                    <h3 class="font-display font-bold text-terracotta-900 text-base">Tujuan Pembelajaran</h3>
+                    <p class="text-stone-700 text-sm leading-relaxed mt-1">
+                        Melalui pembuatan karya visual tiga dimensi (<em>Pop-Up Book</em>), peserta didik mampu mengidentifikasi, menganalisis, dan menyajikan perkembangan teknologi serta hasil kebudayaan masyarakat praaksara di Indonesia secara kreatif dan kronologis.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Grid Ketentuan -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white rounded-2xl p-5 border border-sand-200 shadow-sm">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="w-8 h-8 rounded-lg bg-sand-100 text-terracotta-600 flex items-center justify-center font-bold text-sm">01</span>
+                        <h3 class="font-display font-bold text-base">Bentuk & Kolaborasi</h3>
+                    </div>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Dikerjakan berkelompok (<strong>3–4 orang</strong>). Pastikan ada pembagian peran yang jelas: periset materi, ilustrator, perakit mekanisme <em>pop-up</em>, dan penulis narasi.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-5 border border-sand-200 shadow-sm">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="w-8 h-8 rounded-lg bg-sand-100 text-terracotta-600 flex items-center justify-center font-bold text-sm">02</span>
+                        <h3 class="font-display font-bold text-base">Spesifikasi Fisik Buku</h3>
+                    </div>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Ukuran minimal <strong>A4 (21 x 29,7 cm)</strong> saat tertutup (menjadi A3 saat dibuka). Gunakan kertas tebal minimal <strong>230–260 gsm</strong> (<em>Art Carton</em>, Buffalo, atau Dupleks) agar konstruksi kokoh.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-5 border border-sand-200 shadow-sm">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="w-8 h-8 rounded-lg bg-sand-100 text-terracotta-600 flex items-center justify-center font-bold text-sm">03</span>
+                        <h3 class="font-display font-bold text-base">Teknik & Variasi Pop-Up</h3>
+                    </div>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Dirakit secara manual (<em>handmade</em>). Wajib menggunakan minimal <strong>3 variasi mekanisme</strong> berbeda seperti <em>V-Fold</em>, <em>Box/Cylinder</em>, <em>Pull-Tab</em> (tarikan), atau <em>Lift-the-Flap</em> (jendela buka-tutup).
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-5 border border-sand-200 shadow-sm">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="w-8 h-8 rounded-lg bg-sand-100 text-terracotta-600 flex items-center justify-center font-bold text-sm">04</span>
+                        <h3 class="font-display font-bold text-base">Orisinalitas Narasi</h3>
+                    </div>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Teks ringkas, padat, informatif, dan ditulis ulang dengan bahasa sendiri (hindari <em>copy-paste</em> mentah). Cantumkan sumber referensi kredibel di halaman akhir.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Struktur & Komponen Wajib -->
+        <section id="komponen" class="scroll-mt-24 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-l-4 border-terracotta-600 pl-4">
+                <div>
+                    <h2 class="font-display text-2xl font-bold text-sand-900">2. Komponen Wajib di Dalam Pop-Up Book</h2>
+                    <p class="text-stone-600 text-sm mt-1">Gunakan daftar periksa interaktif di bawah ini untuk memastikan kelengkapan isi buku kelompokmu.</p>
+                </div>
+                <span id="checklist-progress" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-terracotta-100 text-terracotta-800 w-fit no-print">
+                    0 / 8 Komponen Terpenuhi
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Kolom Kiri: Struktur Bagian Buku -->
+                <div class="lg:col-span-1 space-y-4">
+                    <div class="bg-white rounded-2xl p-5 border border-sand-200 shadow-sm h-full">
+                        <h3 class="font-display font-bold text-base text-sand-900 mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-book text-terracotta-600"></i> Anatomi Halaman Buku
+                        </h3>
+                        <ul class="space-y-3 text-sm">
+                            <li class="p-3 rounded-xl bg-sand-50 border border-sand-200">
+                                <span class="font-bold text-terracotta-700 block">1. Sampul Depan (Cover)</span>
+                                <span class="text-stone-600 text-xs">Judul menarik, ilustrasi tema praaksara, nama anggota kelompok, & kelas.</span>
+                            </li>
+                            <li class="p-3 rounded-xl bg-sand-50 border border-sand-200">
+                                <span class="font-bold text-terracotta-700 block">2. Halaman Pembuka (1 Hal)</span>
+                                <span class="text-stone-600 text-xs">Pengertian masa praaksara secara umum & lini masa (<em>timeline</em>) singkat pembagian zaman.</span>
+                            </li>
+                            <li class="p-3 rounded-xl bg-terracotta-50 border border-terracotta-200">
+                                <span class="font-bold text-terracotta-900 block">3. Konten Inti: 5 Bab Zaman</span>
+                                <span class="text-stone-700 text-xs">Paleolitikum, Mesolitikum, Neolitikum, Megalitikum, & Zaman Logam (masing-masing 1–2 halaman buka).</span>
+                            </li>
+                            <li class="p-3 rounded-xl bg-sand-50 border border-sand-200">
+                                <span class="font-bold text-terracotta-700 block">4. Halaman Penutup (1 Hal)</span>
+                                <span class="text-stone-600 text-xs">Glosarium mini istilah arkeologi (<em>animisme, bivale, kjokkenmoddinger</em>, dll.) & Daftar Pustaka.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: 5 Komponen Wajib Setiap Zaman (Interactive Checklist) -->
+                <div class="lg:col-span-2 bg-white rounded-2xl p-5 sm:p-6 border border-sand-200 shadow-sm">
+                    <h3 class="font-display font-bold text-base text-sand-900 mb-1 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-terracotta-600"></i> 5 Elemen Wajib di Setiap Halaman Zaman
+                    </h3>
+                    <p class="text-xs text-stone-500 mb-4">Klik kotak untuk menandai progres penyusunan kelompokmu (tersimpan otomatis di browser).</p>
+
+                    <div class="space-y-3" id="checklist-container">
+                        <!-- Item 1 -->
+                        <label class="flex items-start gap-3.5 p-3.5 rounded-xl border border-sand-200 hover:bg-sand-50 cursor-pointer transition-colors">
+                            <input type="checkbox" class="task-check mt-1 w-4 h-4 accent-terracotta-600 rounded" data-id="item-1">
+                            <div>
+                                <span class="font-bold text-sm text-sand-900 block">A. Judul Zaman & Pengertian Singkat</span>
+                                <span class="text-xs text-stone-600 leading-relaxed">Nama zaman, periodisasi, makna istilah, serta gambaran singkat kondisi alam/lingkungan saat itu.</span>
+                            </div>
+                        </label>
+
+                        <!-- Item 2 -->
+                        <label class="flex items-start gap-3.5 p-3.5 rounded-xl border border-sand-200 hover:bg-sand-50 cursor-pointer transition-colors">
+                            <input type="checkbox" class="task-check mt-1 w-4 h-4 accent-terracotta-600 rounded" data-id="item-2">
+                            <div>
+                                <span class="font-bold text-sm text-sand-900 block">B. Ciri-Ciri Kehidupan Masyarakat</span>
+                                <span class="text-xs text-stone-600 leading-relaxed">Mencakup <strong>pola hunian</strong> (<em>nomaden/semi-sedenter/sedenter</em>), <strong>cara bertahan hidup</strong> (<em>food gathering/food producing</em>), dan <strong>sistem sosial/kepercayaan</strong>.</span>
+                            </div>
+                        </label>
+
+                        <!-- Item 3 -->
+                        <label class="flex items-start gap-3.5 p-3.5 rounded-xl border border-sand-200 hover:bg-sand-50 cursor-pointer transition-colors">
+                            <input type="checkbox" class="task-check mt-1 w-4 h-4 accent-terracotta-600 rounded" data-id="item-3">
+                            <div>
+                                <span class="font-bold text-sm text-sand-900 block">C. Jenis Manusia Purba / Ras Pendukung</span>
+                                <span class="text-xs text-stone-600 leading-relaxed">Menyebutkan jenis manusia purba atau ras yang hidup dan menghasilkan kebudayaan pada zaman tersebut (bisa dibuat kartu profil lipat).</span>
+                            </div>
+                        </label>
+
+                        <!-- Item 4 -->
+                        <label class="flex items-start gap-3.5 p-3.5 rounded-xl border border-terracotta-200 bg-terracotta-50/40 hover:bg-terracotta-50 cursor-pointer transition-colors">
+                            <input type="checkbox" class="task-check mt-1 w-4 h-4 accent-terracotta-600 rounded" data-id="item-4">
+                            <div>
+                                <span class="font-bold text-sm text-terracotta-900 block">D. Hasil Budaya / Peninggalan Utama (Objek Pop-Up 3D)</span>
+                                <span class="text-xs text-stone-700 leading-relaxed"><strong>Pusat visual halaman!</strong> Berupa objek timbul 3D yang dilengkapi keterangan: <strong>Nama Artefak</strong>, <strong>Bahan & Teknik Pembuatan</strong>, serta <strong>Fungsi Benda</strong>.</span>
+                            </div>
+                        </label>
+
+                        <!-- Item 5 -->
+                        <label class="flex items-start gap-3.5 p-3.5 rounded-xl border border-sand-200 hover:bg-sand-50 cursor-pointer transition-colors">
+                            <input type="checkbox" class="task-check mt-1 w-4 h-4 accent-terracotta-600 rounded" data-id="item-5">
+                            <div>
+                                <span class="font-bold text-sm text-sand-900 block">E. Lokasi Penemuan di Indonesia</span>
+                                <span class="text-xs text-stone-600 leading-relaxed">Menyebutkan daerah atau situs arkeologi tempat ditemukannya artefak zaman tersebut di wilayah Indonesia.</span>
+                            </div>
+                        </label>
+
+                        <!-- Kelengkapan Tambahan -->
+                        <div class="pt-2 border-t border-sand-200 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            <label class="flex items-center gap-2 p-2.5 rounded-xl border border-sand-200 hover:bg-sand-50 cursor-pointer text-xs font-medium">
+                                <input type="checkbox" class="task-check w-4 h-4 accent-terracotta-600 rounded" data-id="item-6">
+                                <span>Sampul & Identitas</span>
+                            </label>
+                            <label class="flex items-center gap-2 p-2.5 rounded-xl border border-sand-200 hover:bg-sand-50 cursor-pointer text-xs font-medium">
+                                <input type="checkbox" class="task-check w-4 h-4 accent-terracotta-600 rounded" data-id="item-7">
+                                <span>Halaman Timeline</span>
+                            </label>
+                            <label class="flex items-center gap-2 p-2.5 rounded-xl border border-sand-200 hover:bg-sand-50 cursor-pointer text-xs font-medium">
+                                <input type="checkbox" class="task-check w-4 h-4 accent-terracotta-600 rounded" data-id="item-8">
+                                <span>Glosarium & Pustaka</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Peta Materi Per Zaman (Interactive Tabs) -->
+        <section id="panduan-zaman" class="scroll-mt-24 space-y-6">
+            <div class="border-l-4 border-terracotta-600 pl-4">
+                <h2 class="font-display text-2xl font-bold text-sand-900">3. Acuan Konten Materi Per Zaman</h2>
+                <p class="text-stone-600 text-sm mt-1">Klik masing-masing tab zaman di bawah ini untuk melihat rincian wajib yang harus masuk ke halaman bukumu.</p>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex flex-wrap gap-2 no-print" role="tablist">
+                <button onclick="switchEra('paleo')" id="tab-paleo" class="era-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all bg-terracotta-600 text-white shadow-sm">
+                    1. Paleolitikum
+                </button>
+                <button onclick="switchEra('meso')" id="tab-meso" class="era-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all bg-white text-stone-700 border border-sand-200 hover:bg-sand-100">
+                    2. Mesolitikum
+                </button>
+                <button onclick="switchEra('neo')" id="tab-neo" class="era-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all bg-white text-stone-700 border border-sand-200 hover:bg-sand-100">
+                    3. Neolitikum
+                </button>
+                <button onclick="switchEra('mega')" id="tab-mega" class="era-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all bg-white text-stone-700 border border-sand-200 hover:bg-sand-100">
+                    4. Megalitikum
+                </button>
+                <button onclick="switchEra('logam')" id="tab-logam" class="era-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all bg-white text-stone-700 border border-sand-200 hover:bg-sand-100">
+                    5. Zaman Logam
+                </button>
+            </div>
+
+            <!-- Dynamic Era Display Card -->
+            <div id="era-detail-card" class="bg-white rounded-2xl p-6 sm:p-8 border border-sand-200 shadow-sm transition-all">
+                <!-- Konten akan diisi oleh JavaScript -->
+            </div>
+        </section>
+
+        <!-- Section 4: Kriteria Penilaian -->
+        <section id="penilaian" class="scroll-mt-24 space-y-6">
+            <div class="border-l-4 border-terracotta-600 pl-4">
+                <h2 class="font-display text-2xl font-bold text-sand-900">4. Kriteria & Bobot Penilaian</h2>
+                <p class="text-stone-600 text-sm mt-1">Aspek yang akan dinilai oleh guru dari hasil akhir Pop-Up Book dan presentasi kelompok.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white rounded-2xl p-5 border border-sand-200 shadow-sm relative overflow-hidden">
+                    <div class="text-3xl font-display font-extrabold text-terracotta-600 mb-2">35%</div>
+                    <h3 class="font-display font-bold text-base text-sand-900 mb-1">Akurasi Materi Sejarah</h3>
+                    <p class="text-xs text-stone-600 leading-relaxed">Ketepatan kronologi zaman, kelengkapan komponen (pengertian, ciri, manusia purba, artefak, lokasi), dan kebenaran fakta.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-5 border border-sand-200 shadow-sm relative overflow-hidden">
+                    <div class="text-3xl font-display font-extrabold text-terracotta-600 mb-2">30%</div>
+                    <h3 class="font-display font-bold text-base text-sand-900 mb-1">Kreativitas & Teknik Pop-Up</h3>
+                    <p class="text-xs text-stone-600 leading-relaxed">Keragaman mekanisme lipatan (minimal 3 jenis), presisi potongan, dan kemampuan objek 3D berdiri kokoh saat dibuka.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-5 border border-sand-200 shadow-sm relative overflow-hidden">
+                    <div class="text-3xl font-display font-extrabold text-terracotta-600 mb-2">20%</div>
+                    <h3 class="font-display font-bold text-base text-sand-900 mb-1">Estetika & Tata Letak</h3>
+                    <p class="text-xs text-stone-600 leading-relaxed">Komposisi warna yang harmonis, keterbacaan teks narasi, dan kerapian pengerjaan (bersih dari bekas lem berlebih).</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-5 border border-sand-200 shadow-sm relative overflow-hidden">
+                    <div class="text-3xl font-display font-extrabold text-terracotta-600 mb-2">15%</div>
+                    <h3 class="font-display font-bold text-base text-sand-900 mb-1">Presentasi & Kolaborasi</h3>
+                    <p class="text-xs text-stone-600 leading-relaxed">Penguasaan materi saat mempresentasikan karya di depan kelas serta kekompakan pembagian tugas anggota.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-sand-900 text-stone-400 py-8 px-4 sm:px-6 lg:px-8 mt-12">
+        <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+            <div class="flex items-center gap-2 text-white font-display font-semibold">
+                <i class="fa-solid fa-landmark text-terracotta-500"></i>
+                <span>Mata Pelajaran Sejarah • Kelas X</span>
+            </div>
+            <p class="text-center sm:text-right">Selamat berkarya dan menjelajahi jejak peradaban masa lampau!</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Interaktif -->
+    <script>
+        // Data Materi Per Zaman
+        const eraData = {
+            paleo: {
+                title: "Zaman Batu Tua (Paleolitikum)",
+                subtitle: "Berlangsung sekitar ± 600.000 tahun lalu pada masa Pleistosen",
+                pengertian: "Zaman di mana manusia purba mulai membuat peralatan dari batu yang masih dikerjakan secara sangat kasar dan sederhana, seiring kondisi alam yang masih labil (zaman es/glasial).",
+                ciri: [
+                    "Pola hunian berpindah-pindah (nomaden) mengikuti ketersediaan sumber makanan.",
+                    "Cara bertahan hidup berburu dan mengumpulkan makanan tingkat sederhana (food gathering).",
+                    "Hidup dalam kelompok-kelompok kecil (10–15 orang).",
+                    "Alat batu belum diasah, permukaannya masih kasar."
+                ],
+                manusia: [
+                    "Meganthropus paleojavanicus",
+                    "Pithecanthropus erectus",
+                    "Homo soloensis & Homo wajakensis"
+                ],
+                peninggalan: [
+                    { nama: "Kapak Perimbas (Chopper)", ket: "Batu kali yang dibelah satu sisinya, berfungsi untuk merimbas kayu, memecah tulang, dan menguliti hewan." },
+                    { nama: "Kapak Genggam", ket: "Tidak bertangkai, digenggam langsung untuk menggali umbi-umbian atau memotong daging." },
+                    { nama: "Alat Serpih (Flakes) & Alat Tulang", ket: "Batu kecil tajam dan tulang binatang untuk mengorek umbi serta menangkap ikan." }
+                ],
+                lokasi: "Pacitan (Jawa Timur), Ngandong (Jawa Tengah), Sangiran, dan Cabbenge (Sulawesi Selatan).",
+                idePopup: "Gunakan teknik V-Fold untuk menampilkan diorama manusia purba berburu menggunakan kapak perimbas di padang sabana, serta Lift-the-Flap untuk detail bentuk alat serpih."
+            },
+            meso: {
+                title: "Zaman Batu Tengah (Mesolitikum)",
+                subtitle: "Berlangsung pada masa Holosen ketika iklim bumi mulai stabil",
+                pengertian: "Masa peralihan teknologi batu di mana manusia mulai tinggal menetap sementara di gua-gua atau tepi pantai serta mulai mengenal api dan seni lukis.",
+                ciri: [
+                    "Pola hunian semi-sedenter (menetap sementara di gua payung atau tepi pantai).",
+                    "Berburu dan meramu tingkat lanjut, mulai mengenal bercocok tanam sederhana (berhuma).",
+                    "Sudah mengenal api untuk memasak dan menghangatkan tubuh.",
+                    "Mulai muncul kepercayaan awal yang terlihat dari lukisan dinding gua."
+                ],
+                manusia: [
+                    "Ras Papua Melanesoid (nenek moyang penduduk Papua & Melanesia)"
+                ],
+                peninggalan: [
+                    { nama: "Kjokkenmoddinger", ket: "Sampah dapur berupa tumpukan kulit kerang dan siput yang menggunung di tepi pantai." },
+                    { nama: "Abris Sous Roche", ket: "Gua-gua menyerupai ceruk batu karang yang dijadikan tempat tinggal sekaligus pelindung dari cuaca." },
+                    { nama: "Pebble (Kapak Sumatra) & Lukisan Gua", ket: "Kapak genggam dari batu kali yang dibelah, serta lukisan cap tangan berwarna merah di dinding gua." }
+                ],
+                lokasi: "Pesisir Timur Sumatra (Langsa, Medan), Gua Leang-Leang Maros (Sulawesi Selatan), dan Sampung (Ponorogo).",
+                idePopup: "Buat potongan penampang gua (Abris Sous Roche) dengan teknik Box/Layer yang di dalamnya terdapat lukisan cap tangan merah menggunakan mika atau kertas lipat."
+            },
+            neo: {
+                title: "Zaman Batu Muda (Neolitikum)",
+                subtitle: "Terjadi 'Revolusi Kebudayaan' besar dalam sejarah manusia",
+                pengertian: "Zaman ketika terjadi perubahan mendasar (revolusi neolitik) dari pola hidup mengumpulkan makanan menjadi memproduksi makanan sendiri, dengan alat batu yang sudah diasah halus.",
+                ciri: [
+                    "Pola hunian sudah menetap (sedenter) di perkampungan sederhana.",
+                    "Mengenal bercocok tanam (food producing) dan beternak hewan.",
+                    "Peralatan batu sudah diasah hingga halus dan simetris (diupam).",
+                    "Mulai mengenal pembagian kerja, gotong royong, dan pembuatan gerabah/tenun."
+                ],
+                manusia: [
+                    "Ras Proto Melayu (Melayu Tua) — leluhur suku Dayak, Toraja, Batak, dan Sasak"
+                ],
+                peninggalan: [
+                    { nama: "Kapak Persegi", ket: "Batu persegi panjang yang diasah halus; ukuran besar untuk cangkul, ukuran kecil untuk alat pahat." },
+                    { nama: "Kapak Lonjong", ket: "Penampang berbentuk lonjong dengan ujung lancip untuk diikatkan pada tangkai kayu." },
+                    { nama: "Gerabah & Perhiasan Batu", ket: "Wadah penyimpanan dari tanah liat bakar serta gelang/kalung dari batu indah." }
+                ],
+                lokasi: "Punung Pacitan (Jawa Timur), Bogor, Minahasa (Sulawesi Utara), dan Papua.",
+                idePopup: "Gunakan mekanisme Pull-Tab (tarikan) untuk menggerakkan ilustrasi petani Neolitikum yang sedang mencangkul tanah menggunakan kapak persegi bertangkai."
+            },
+            mega: {
+                title: "Zaman Batu Besar (Megalitikum)",
+                subtitle: "Berkembang pesat sejak akhir Neolitikum hingga Zaman Logam",
+                pengertian: "Tradisi kebudayaan yang ditandai dengan pendirian bangunan-bangunan dari batu berukuran besar yang berkaitan erat dengan sistem kepercayaan pemujaan roh nenek moyang.",
+                ciri: [
+                    "Sistem kepercayaan berkembang pesat: Animisme (pemujaan roh) dan Dinamisme (kekuatan gaib benda).",
+                    "Gotong royong masyarakat sangat kuat untuk memindahkan dan mendirikan batu-batu raksasa.",
+                    "Muncul pemimpin kelompok (kepala suku) yang dihormati bahkan setelah wafat."
+                ],
+                manusia: [
+                    "Ras Proto Melayu dan berlanjut ke Ras Deutero Melayu"
+                ],
+                peninggalan: [
+                    { nama: "Menhir & Dolmen", ket: "Menhir: tugu batu pemujaan arwah. Dolmen: meja batu tempat meletakkan sesaji." },
+                    { nama: "Sarkofagus & Waruga", ket: "Sarkofagus: peti kubur batu berbentuk lesung bertutup. Waruga: kubur batu berbentuk kubus." },
+                    { nama: "Punden Berundak & Arca Batu", ket: "Bangunan bertingkat untuk pemujaan roh nenek moyang (cikal bakal arsitektur candi)." }
+                ],
+                lokasi: "Dataran Tinggi Pasemah (Sumatra Selatan), Bondowoso (Jawa Timur), Bali, Minahasa, dan Nias.",
+                idePopup: "Sangat cocok menggunakan teknik Box/Cylinder 3D untuk membuat Punden Berundak bertingkat atau Dolmen yang berdiri tegak di tengah halaman."
+            },
+            logam: {
+                title: "Zaman Logam (Masa Perundagian)",
+                subtitle: "Di Indonesia langsung memasuki Zaman Perunggu dan Besi",
+                pengertian: "Masa di mana masyarakat sudah menguasai teknologi melebur bijih logam dan mencetaknya menjadi berbagai perkakas maupun benda upacara melalui golongan ahli (undagi).",
+                ciri: [
+                    "Muncul golongan undagi (tukang/pengrajin ahli) yang memiliki keterampilan khusus mengecor logam.",
+                    "Menguasai dua teknik cetak logam: Bivalve (setangkup) dan A Cire Perdue (cetak lilin).",
+                    "Perdagangan antarpulau mulai berkembang dengan sistem barter.",
+                    "Struktur sosial masyarakat semakin kompleks dan teratur."
+                ],
+                manusia: [
+                    "Ras Deutero Melayu (Melayu Muda) — leluhur suku Jawa, Bugis, Minang, dan Melayu"
+                ],
+                peninggalan: [
+                    { nama: "Nekara & Moko", ket: "Gendang perunggu berpinggang di tengah untuk upacara memanggil hujan dan perang (Moko berukuran lebih kecil)." },
+                    { nama: "Kapak Corong (Kapak Sepatu)", ket: "Kapak perunggu dengan bagian pangkal berlubang menyerupai corong untuk memasukkan tangkai kayu." },
+                    { nama: "Candrasa & Bejana Perunggu", ket: "Kapak upacara dengan bentuk artistik indah serta wadah perunggu berhias pola anyaman." }
+                ],
+                lokasi: "Pejeng Gianyar (Bali - Nekara terbesar 'Bulan Pejeng'), Pulau Alor (NTT), Sumatra Selatan, dan Jawa Barat.",
+                idePopup: "Buat Nekara Perunggu 3D berbentuk silinder (Cylinder Pop-Up) lengkap dengan hiasan pola geometris khas masa perundagian."
+            }
+        };
+
+        // Fungsi Render Tab Zaman
+        function switchEra(eraKey) {
+            const data = eraData[eraKey];
+            const container = document.getElementById('era-detail-card');
+
+            // Update styling tombol tab
+            document.querySelectorAll('.era-tab').forEach(btn => {
+                btn.classList.remove('bg-terracotta-600', 'text-white', 'shadow-sm');
+                btn.classList.add('bg-white', 'text-stone-700', 'border', 'border-sand-200');
+            });
+            const activeBtn = document.getElementById(`tab-${eraKey}`);
+            activeBtn.classList.remove('bg-white', 'text-stone-700', 'border', 'border-sand-200');
+            activeBtn.classList.add('bg-terracotta-600', 'text-white', 'shadow-sm');
+
+            // Bangun HTML konten
+            const ciriHtml = data.ciri.map(item => `
+                <li class="flex items-start gap-2 text-sm text-stone-700">
+                    <i class="fa-solid fa-check text-terracotta-600 mt-1 text-xs"></i>
+                    <span>${item}</span>
+                </li>
+            `).join('');
+
+            const manusiaHtml = data.manusia.map(m => `
+                <span class="inline-block px-3 py-1.5 rounded-xl bg-sand-100 text-sand-900 font-semibold text-xs border border-sand-200">
+                    <i class="fa-solid fa-user-clock text-terracotta-600 mr-1.5"></i>${m}
+                </span>
+            `).join('');
+
+            const peninggalanHtml = data.peninggalan.map(p => `
+                <div class="p-3.5 rounded-xl bg-sand-50 border border-sand-200">
+                    <div class="font-bold text-sm text-terracotta-800 mb-1">${p.nama}</div>
+                    <p class="text-xs text-stone-600 leading-relaxed">${p.ket}</p>
+                </div>
+            `).join('');
+
+            container.innerHTML = `
+                <div class="border-b border-sand-200 pb-4 mb-6">
+                    <span class="text-xs font-bold uppercase tracking-wider text-terracotta-600">${data.subtitle}</span>
+                    <h3 class="font-display text-2xl font-extrabold text-sand-900 mt-1">${data.title}</h3>
+                    <p class="text-sm text-stone-600 mt-2 leading-relaxed"><strong>Pengertian:</strong> ${data.pengertian}</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h4 class="font-display font-bold text-sm uppercase tracking-wide text-sand-900 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-campground text-terracotta-600"></i> Ciri Kehidupan Masyarakat
+                        </h4>
+                        <ul class="space-y-2">
+                            ${ciriHtml}
+                        </ul>
+                    </div>
+
+                    <div class="space-y-5">
+                        <div>
+                            <h4 class="font-display font-bold text-sm uppercase tracking-wide text-sand-900 mb-2.5 flex items-center gap-2">
+                                <i class="fa-solid fa-skull text-terracotta-600"></i> Manusia Purba / Ras Pendukung
+                            </h4>
+                            <div class="flex flex-wrap gap-2">
+                                ${manusiaHtml}
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-display font-bold text-sm uppercase tracking-wide text-sand-900 mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-location-dot text-terracotta-600"></i> Lokasi Penemuan di Indonesia
+                            </h4>
+                            <p class="text-sm text-stone-700 bg-sand-50 p-3 rounded-xl border border-sand-200">${data.lokasi}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h4 class="font-display font-bold text-sm uppercase tracking-wide text-sand-900 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-cube text-terracotta-600"></i> Hasil Kebudayaan / Objek Pop-Up 3D
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        ${peninggalanHtml}
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3">
+                    <i class="fa-solid fa-lightbulb text-amber-600 mt-0.5"></i>
+                    <div class="text-xs text-amber-950 leading-relaxed">
+                        <strong>Tips Ide Pop-Up Halaman Ini:</strong> ${data.idePopup}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Fungsi Checklist Interaktif dengan LocalStorage
+        function initChecklist() {
+            const checkboxes = document.querySelectorAll('.task-check');
+            const progressBadge = document.getElementById('checklist-progress');
+
+            function updateProgress() {
+                const total = checkboxes.length;
+                const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+                progressBadge.textContent = `${checked} / ${total} Komponen Terpenuhi`;
+                if (checked === total) {
+                    progressBadge.classList.remove('bg-terracotta-100', 'text-terracotta-800');
+                    progressBadge.classList.add('bg-emerald-100', 'text-emerald-800');
+                } else {
+                    progressBadge.classList.add('bg-terracotta-100', 'text-terracotta-800');
+                    progressBadge.classList.remove('bg-emerald-100', 'text-emerald-800');
+                }
+            }
+
+            checkboxes.forEach(cb => {
+                const id = cb.getAttribute('data-id');
+                try {
+                    const saved = localStorage.getItem(`popup_sejarah_${id}`);
+                    if (saved === 'true') cb.checked = true;
+                } catch (e) {}
+
+                cb.addEventListener('change', () => {
+                    try {
+                        localStorage.setItem(`popup_sejarah_${id}`, cb.checked);
+                    } catch (e) {}
+                    updateProgress();
+                });
+            });
+
+            updateProgress();
+        }
+
+        // Fungsi Salin Ringkasan untuk Dibagikan ke Grup WhatsApp/Kelas
+        function copyShareText() {
+            const shareText = `*TUGAS PROYEK KOKURIKULER SEJARAH (KELAS X)*
+Tema: *Pop-Up Book Hasil Budaya Masa Praaksara di Indonesia*
+
+*Ketentuan Umum:*
+- Kelompok: 3-4 orang
+- Ukuran Buku: Minimal A4 tertutup (kertas tebal min. 230 gsm)
+- Teknik: Handmade dengan min. 3 variasi mekanisme pop-up
+
+*Komponen Wajib Setiap Zaman (Paleolitikum, Mesolitikum, Neolitikum, Megalitikum, Zaman Logam):*
+1. Judul & Pengertian singkat zaman
+2. Ciri kehidupan (pola hunian, ekonomi, sosial/kepercayaan)
+3. Jenis manusia purba / ras pendukung
+4. Hasil budaya / peninggalan (objek Pop-Up 3D + bahan & fungsi)
+5. Lokasi penemuan di Indonesia
+
+*Pelengkap:* Sampul depan, halaman pembuka (timeline), serta glosarium & daftar pustaka di halaman akhir.`;
+
+            const tempInput = document.createElement('textarea');
+            tempInput.value = shareText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Inisialisasi saat halaman dimuat
+        window.addEventListener('DOMContentLoaded', () => {
+            switchEra('paleo');
+            initChecklist();
+        });
+    </script>
+</body>
+</html>
